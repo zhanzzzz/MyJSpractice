@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>賦值運算子</h1>
+    <script>
+        //prompt為textbox，且括弧內字串就是提示訊息
+        var ask=prompt("本章節將學到")
+
+        console.log(ask);
+        var x=1;
+        console.log("X為 ："+x);
+        
+        console.log("X+=1 等於 ："+(x+=1));
+        var y=10;
+        console.log("Y為 ："+y);
+        y -=2;
+        console.log("y-=2："+y);
+        x*=10;
+        console.log("x*=10："+x);
+        x/=4;
+        console.log("x/=4："+x);
+        var z=35;
+        console.log("z%=10："+(z%=10));
+
+        //三元運算邏輯(也就是if else的簡寫版本) ： ''(條件)?(敘述1)：(敘述2)''  => 翻譯： 如果成立，我就A，否則B
+        (x>y)?console.log("X大於Y"):console.log("X不大於Y");
+        (x>y)&&(x>1)?console.log(true):console.log(false);
+
+        
+        
+        //給預設值的用法： 變數 ||= 數值，'或'的語法 若前面變數有東西則不理會後面數值!!!!!
+        //情況 1. 若變數沒有值就會用預設值，看範例
+        var a;
+        a ||=10;
+        console.log("此時 a 是預設值 = "+a);
+
+        //情況 2. 若變數已經有宣告值則不理會預設值
+        var b=100;
+        b ||=20;
+        console.log("因為 b 已宣告值100，所以不會里會 ||=20 ， b值 = "+b);
+
+    </script>
+</body>
+</html>
