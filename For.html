@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Q1.For迴圈數綿羊到10支，當數到10支的時候就會睡著</h1>
+    <h1>Q2.用for迴圈到著數綿羊，數到1的時候就會睡著</h1>
+    <h1>Q3.組合技：迴圈+if+break，1~10但3就會睡著所以中止迴圈</h1>
+    <h1>Q4.我要跳著數，所以迴圈的執行須加上條件</h1>
+    <h1>Q5.組合技：迴圈+if+continue，只想跳過第4隻不數，要用continue</h1>
+    <script>
+        //方法1.用var當宣告變數
+        for(var i=0;i<10;i++){
+            //console.log("第"+(i+1)+"支綿羊")
+            NumberOfsheeps(i+1)
+        }
+        if(i==10){
+            console.log("睡著哩")
+        }
+        
+        //方法2.用let宣告變數並且倒數
+        for(let j=10;j>0;j--){
+            //console.log("還有"+j+"隻綿羊")
+            NumberOfsheeps(j)
+            if(j==1){
+                console.log("睡著哩")
+            }
+        }
+        //重點!以測試過下列，i值可印;j值印不出來，but why
+        //因為var的宣告屬全域，而let的宣告僅在回圈內
+
+        //結果 console.log(i)=10
+        //結果 console.log(j)=沒有值
+
+
+        //Q3.數到3必須中止break
+        for(var k=1;k<=10;k++){
+            //console.log("第"+k+"隻綿羊")
+            NumberOfsheeps(k)
+
+            //達條件後，執行結果but迴圈會繼續跑，所以需要中止迴圈
+            if(k==3){
+                console.log("睡著哩")
+                //break達條件就會跳出迴圈，後續便不再執行
+                break
+            }
+        }
+
+
+        //Q4.帶條件的數，基數數法
+        console.log("基數除以2會餘1")
+        for(var l=1;l<=10;l++){
+            if(l%2==1){
+                //console.log("第"+l+"隻綿羊")
+                NumberOfsheeps(l)
+            }
+        }
+        
+
+        //Q5.跳過4不數，中止某條件但後續繼續
+        console.log("第4隻不數唷")
+        for(var m=1;m<=10;m++){
+            //大重點：continue達條件就暫停，所以執行console須放在continue條件後面
+            if(m==4){
+                continue
+            }
+            //console.log("第"+m+"隻綿羊")
+            NumberOfsheeps(m)
+        }
+
+        //整理：continue VS break
+        //break 達條件後，中止迴圈不再執行
+        //continue 達條件後，停止該次迴圈，執行後續
+        //運用函式【function NumberOfsheeps(num)】去"簡化"每個需要打console.log的程式碼
+
+        function NumberOfsheeps(num){
+            console.log(num+"隻綿羊")
+        }
+    </script>
+</body>
+</html>

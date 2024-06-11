@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>What is Function</h1>
+    <h1>Function：函式，幫忙過濾掉重複的動作，可以想成是幫行為宣告一個變數以重複使用</h1>
+    <h1>舉例：若我有一句句子在每個if條件都需重複列印，這是就可以把console.log(.....)宣告為一個函示function</h1>
+    <h3>
+        <span style="color: red;">函式的重點只是"簡化"程式碼，不一定要使用它</span>
+    </h3>
+    <h1>觀念2. 函式的宣告方法：陳述式與表達式</h1>
+    <h3>
+        <span style="color: red;">
+            1.陳述式：函式可以放在宣告前，程式碼會去找你有無宣告該函式<br>
+            2.表達式：宣告完才能使用該函式，因為是用var去接函式名
+        </span>
+    </h3>
+    
+    <script>
+        
+        //因宣告了函式所以每個需要做"數綿羊"動作的指令都可以套函式進去執行動作
+        //使用let宣告i，使每個i都只能作用在該迴圈，因此可以重複使用i在每個迴圈
+        for(let i=1;i<=3;i++){
+            NumberOfsheeps(i)
+        }
+        for(let i=101;i<=103;i++ ){
+            NumberOfsheeps(i)
+        }
+        for(let i=21;i<=23;i++){
+            NumberOfsheeps(i)
+        }
+        
+        //宣告函式，在判斷有無需要套變數，變數index置於()裡面
+        function NumberOfsheeps(num){
+            console.log(num+"隻綿羊")
+        }
+
+        //函式的陳述式與表達式(宣告方法)
+        //方法1. 陳述式：函式可以放在宣告前，程式碼會去找你有無宣告該函式
+        helloFunctionStatement()
+        function helloFunctionStatement(){
+            console.log("hello function statement")
+        }
+
+        //方法2. 表達式：宣告完才能使用該函式，因為是用var去接函式名
+        
+        //helloFunctionStatement2() 放在宣告之前會出現"Error!!!"
+        var helloFunctionStatement2=function(){
+            console.log("hello function statement2")
+        }
+        //因為宣告完了，所以可以使用
+        helloFunctionStatement2()
+    </script>
+</body>
+</html>
