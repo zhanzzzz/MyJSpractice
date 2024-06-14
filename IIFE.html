@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>立即函式 IIFE：可以立即呼叫的「函式表達式」，功用：簡化</h1>
+    <h2>
+        <span style="color: red;">
+        表達式 => 會回傳值<br><br>
+        EX：var sample=function(  ){......}
+        </span>
+    </h2>
+    <h1>使用函式表達式回傳後立即執行</h1>
+    <h2>
+        <span style="color: red;">
+            1.陳述式：不會回傳值<br>
+            2.表達式：會回傳值，函式本身
+        </span>
+    </h2>
+    <script>
+        // step1. 正常的表達式加上宣告使用
+        var sayHIfunction=function(name){
+            console.log("HI ,"+name+" ! ")
+        }
+        sayHIfunction("ZZ")
+
+        // step2. 將重複的宣告使用拿掉，因為var sayHIfunction可直接使用
+        var sayHIfunction=function(name){
+            console.log("HI ,"+name+" ! ")
+        }("Peter") //直接省略 sayHIfunction("參數")
+
+    </script>
+</body>
+</html>

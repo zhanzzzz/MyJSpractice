@@ -14,6 +14,7 @@
         var a=100 //全域變數
         //先設計function名 在決定他的內容 => 陳述式的函式宣告
         LocalVariabel()
+        // 1.區域變數
         function LocalVariabel(){
             var a=150   //有加上var => function裡的a為區域變數
             console.log(a) // a沒有受全域變數的汙染，所以印出值為 150
@@ -23,6 +24,7 @@
         // 測試2.若function 並沒有加上 var/let 去做宣告 => 受全域變數汙染
         
         var b=100 
+        // 2.全域變數
         var GlobalVariabel=function(){
             b=150 //並未使用 var => 此時的b為全域變數，此時的 b 會汙染樓上的 b
             console.log(b)

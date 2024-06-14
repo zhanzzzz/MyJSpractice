@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>物件：由各種的屬性組合而成</h1>
+    <h2>1.用大括弧進行宣告<br>
+    EX：var obj={屬性1,屬性2,屬性3......}</h2>
+    <h2>2.屬性當中一個鍵(key)對應一個值(value)<br>
+    EX：{key : value,key1 : value1,key2 : value2...}</h2>
+    <h2>3.屬性可以是數值、字串、布林值、函式</h2>
+
+    <script>
+        //建立物件，大括弧進行宣告
+
+        //屬性建立：在內宣告 or 在外宣告
+
+        //方法 1.在宣告時一併加入
+        var dog={
+            name:"ZZ",
+            age:7,
+            act:function(){
+                console.log("Voice：bowbow")
+            }
+        }
+        // 方法2. 物件.屬性名=值
+        dog.color="white"
+        
+        // 方法3. 物件【屬性名】=值
+        dog["gender"]="female"
+
+        //也可以新增函式進去 => 只能用表達式唷!!!
+        dog.gesture=function(){
+            console.log("Hi, I'm "+dog.name)
+        }
+
+        // 任務查詢該物件的個個屬性
+        
+        //函式加上() 進行使用
+        dog.gesture()
+        
+        // 方法1. 物件.屬性名
+        console.log("Name："+dog.name)
+        // 方法2. 物件["屬性名"]
+        console.log("Age："+dog["age"])
+        console.log("Color："+dog.color)
+        console.log("Gender："+dog["gender"])
+        // 宣告物件中的函式
+        dog.act()
+        
+        //最後在印出該物件所有屬性
+        console.log(dog)
+    </script>
+</body>
+</html>
