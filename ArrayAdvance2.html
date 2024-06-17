@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>陣列的進階方法2：forEach( ) 、filter( )</h1>
+    <h2>
+        1. forEach( )：讀過陣列裡的每一個元素<br>
+        2. filter(  )：過濾陣列裡的每個元素符合條件就回傳
+    </h2>
+    <h3>
+        <span style="color: red;">
+            hint：map( )用return會回傳值給新變數作為新陣列 / forEach( )用return不會回傳值
+        </span>
+    </h3>
+    <script>
+        var arr=["a","b","c"]
+
+        // element代表陣列裡的每個元素
+        arr.forEach(function(element){
+            console.log(element)
+        })
+        
+        // filter會回傳值，可以用變數去接 return
+        // number的篩選
+        var numArray=[1,2,3,4,5,6,7,8,9]
+        var outcome=numArray.filter(function(element){
+            return (element>3)&&(element<9)
+        })
+        console.log(outcome)
+
+        // 物件屬性的篩選 (陣列是可以塞屬性的!!!)
+        var objectArray=[
+            {animal:"dog",color:"white"},
+            {animal:"dog",color:"black"},
+            {animal:"cat",color:"white"},
+            {animal:"cat",color:"black"},
+            {animal:"bird",color:"white"},
+            {animal:"bird",color:"black"},
+        ]
+    </script>
+</body>
+</html>

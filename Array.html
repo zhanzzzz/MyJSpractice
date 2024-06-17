@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>陣列 Array：使用[ ]來進行宣告索引值</h1>
+    <h2>
+        <span style="color: red;">
+            hint：物件是屬型+值，用{ }來進行宣告
+        </span>
+    </h2>
+    <h1>陣列的基本操作 pop 與 push：可以達到自由調整陣列的長度</h1>
+    <h2>
+        <span style="color: red;">
+            1. pop(  )：將陣列的最後一個值拿掉<br>
+            2. push('值')：將值加到陣列的最後
+        </span>
+    </h2>
+    <h1>陣列的基本操作 indexof 、 slice 、 splice</h1>
+    <h2>
+        <span style="color: red;">
+            1. indexOf( "值" )：可以取得該值的索引數做運用<br>
+            2. slice( i , j ) ：可以取得陣列部分片段的值<br>
+            3. splice( i , j )：可以刪除陣列部分的值
+        </span>
+    </h2>
+    <script>
+        var arr=['111','222','333','444']   //裡面的值皆為string
+        var arr2=[111,222,333,444]  //裡面的值皆為 number
+        var arr3=["dog","cat","bird","simon","tuna","shark","goat","eagle"]
+        
+        // 1.更改陣列裡的值 or 新增值，以arr示範
+        arr[0]="onehundred and eleven" //arr 陣列第一項即改成英文
+        arr[4]="fivehundred and fifty" //arr 新增了第五項項目，記得索引值是「總數-1 !!!」
+        console.log(arr)    //結果['onehundred and eleven', '222', '333', '444','fivehundred and fifty']
+
+        // 2.Pop() & Push() 搭配迴圈，以arr2 示範
+        
+        for(var i=5;i<9;i++){
+            var str=i*111
+            arr2.push(str) //push() 將值加入陣列最後方
+            
+        }
+        console.log("使用迴圈新增4項目後arr2陣列為："+arr2)   //結果[111, 222, 333, 444, 555, 666, 777, 888]
+
+        for(i=0;i<4;i++){
+            arr2.pop()  //pop() 將陣列最後一個值去除掉
+        }
+        console.log("使用迴圈刪減4項目後arr2陣列為："+arr2)   //結果[111, 222, 333, 444]
+
+        // 3.一些基本操作，以arr3 作範例
+        var select=arr3.indexOf("cat")     //從arr3 找出符合的值，並抓出該值的索引值
+        
+        var choice=arr3.slice(2,6)  //使用slice抓取索引值2-5的項目出來
+        console.log("從arr3陣列中抓取部分："+choice) // 結果為['bird', 'simon', 'tuna', 'shark']
+        
+        var delet=arr3.splice(4,4)  //splice(「從第幾項目開始刪除」，「刪除幾項」)
+        console.log("從arr3刪除的項目為： " +delet)
+        console.log("arr3僅剩的項目為： "+arr3)
+</script>
+</body>
+</html>

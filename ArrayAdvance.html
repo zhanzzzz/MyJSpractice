@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>陣列的進階方法 map(函式) ： 陣列裡的「每個值都做一樣的動作」<br>
+        並且是會回傳值，組成一個新的陣列(會有 return 的概念在裡面)
+    </h1>
+    <h2>請看範例：</h2>
+    <h3>
+        const array1= [ 1 , 4 , 9 , 16 ]<br>
+        const map1=array1.map( ( x ) => x*2 )   //此為箭頭函式<br>
+        執行完結果為：[ 2 , 8 , 18 , 32 ]
+    </h3>
+    <h1>練習兩題</h1>
+    <h2>
+        1. 將陣列[ 1 , 2 , 3 , 4 ]轉換成[ 2 , 4 , 6 , 8 ]<br>
+        2. 將陣列[ boy1 , boy2 , girl1 , girl2 ]後面都加上" is good "
+    </h2>
+    <script>
+        // 第一題，目標[2,4,6,8]
+
+        var arr=[1,2,3,4]
+        // 方法1. 用 map()+箭頭函式 =>最簡短
+        var map1=arr.map((numb)=>numb*2)
+        console.log(map1)
+        
+        // 方法2. 將箭頭函式詳細寫成表達式函式
+        var result=arr.map(function(number){
+            return number=number*2
+        })
+        console.log(result)
+        
+        // 方法3. 運用for迴圈+表達式函式完成 => 資料結構
+       var outcome=function(num){
+            return num*=2
+       }
+       var rel=[]
+       for(var i=0;i<4;i++){
+        rel.push(outcome(arr[i]))
+        //rel.push(arr[i]*2)
+       }
+       console.log(rel)
+
+
+       
+       // 第二題，加上 is good
+
+       var stringArr=["boy1","boy2","girl1","girl2"]
+       // 方法 1. 用 map()+箭頭函式 =>最簡短
+       var method1=stringArr.map((str)=>str+" is good")
+       console.log(method1)
+
+       // 方法2. 將箭頭函式詳細寫成表達式函式
+       var method2=stringArr.map(function(str){
+            return str+" is good"         
+       })
+       console.log(method2)
+
+       //方法3. 用for迴圈 => 資料結構
+       var method3=[]
+       for (var i=0;i<stringArr.length;i++){
+            method3.push(stringArr[i]+" is good")
+       }
+       console.log(method3)
+    </script>
+</body>
+</html>
