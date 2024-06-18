@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>解構賦值：將冗長的宣告變得簡潔(包含"陣列"、"物件")</h1>
+    <h2>看範例:以下三種作同樣一件事:宣告dog物件裡面有name、age屬性 分別為Johnny、7歲</h2>
+    <h3>1. 最繁雜： var  dog = {name：" " , age:" "}<br>
+        dog.name="Johnny"<br>
+        dog["age"]=22<br>
+        要列印出來需要console.log(dog.name,dog.age)
+    </h3>
+    <h3>
+        2. 將value 寫在宣告中<br>
+        var dog = {name:"Johny" , age:22}<br>
+        要列印出來需要console.log(dog.name,dog.age)
+    </h3>
+    <h3>
+        3. 最簡潔：使用賦值<br>
+        var {name,age}={name:"Johny",age:22}<br>
+        要列印出來"只"需要console.log(name,nickname)
+    </h3>
+    <script>
+        //let a=1
+        //let b=2
+        //let c=3
+        // 以上三行宣告可簡化成下列宣告
+        // 陣列的解構賦值
+        let [a,b,c]=[1,2,3]
+        console.log(a,b,c)
+        
+        // 物件的解構賦值
+        let space={x,y}={x:111,y:222} // 等同於 {x:x,y:y}
+        console.log("x: ",x,"y: ",y)
+        
+        // 物件正常宣告：一個key(鍵)+一個value(值)
+        //dog={name:" ",nickname:" "}=>dog.name="aaa"  dog.nickname="bbb" 等同於下面
+        let dog={
+            name:"aaa",
+            nickname:"bbb"
+        }
+        console.log(dog.name,dog.nickname)
+       
+        //解構賦值寫法，等同樓上
+        let {name,nickname}={name:"aaa",nickname:"yyy"}
+        console.log(name,nickname)
+    </script>
+</body>
+</html>

@@ -6,10 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>陣列的進階方法2：forEach( ) 、filter( )</h1>
+    <h1>陣列的進階方法2：forEach( ) 、filter( )、find( )</h1>
     <h2>
         1. forEach( )：讀過陣列裡的每一個元素<br>
-        2. filter(  )：過濾陣列裡的每個元素符合條件就回傳
+        2. filter(  )：過濾陣列裡的每個元素符合條件就回傳，並組成一個陣列<br>
+        3. find( )：找到「第一筆」符合條件的資料，只抓一筆資料！！
     </h2>
     <h3>
         <span style="color: red;">
@@ -20,27 +21,74 @@
         var arr=["a","b","c"]
 
         // element代表陣列裡的每個元素
-        arr.forEach(function(element){
-            console.log(element)
+        // Test 1. 這個方法會發現最終值theSlice 會出現 undefined 代表"forEach()"這個方法不會回傳任何值回來
+        var theSlice=arr.forEach(function(element){
+            //console.log(element)
+            return element  // 所以無法用 return+ var 變數去取得值
+        })
+        console.log(theSlice)
+
+        // Test 2. 在函式裡完成 console.log()
+        arr.forEach(function(theArray){
+            console.log(theArray)
         })
         
+        //  forEach()：另一功能可計算陣列所有值的總和
+        var forEachNumTotalArray=[1,2,3,4,5,6]
+        var total=0
+        forEachNumTotalArray.forEach(function(number){
+            total+=number   //需要有個變數去儲存每個元素的總和
+        })
+        console.log(total)
+
+        //  以上範例使用 for 迴圈來寫，延伸變化題加上switch設定條件
+        var forNumTotalArray=[1,2,3,4,5,6]
+        var sum=0
+        for(var i=0;i<forNumTotalArray.length;i++){
+            switch(i){
+                case 4:
+                    console.log("不執行第5項目")    
+                    continue;
+                default:
+                    sum+=forNumTotalArray[i]    //極重點!!!：需要再回圈外設定個空間並賦予值，否則會不知道陣列數字是number  or  string
+            }
+              
+        }
+        console.log(sum)
+
         // filter會回傳值，可以用變數去接 return
         // number的篩選
         var numArray=[1,2,3,4,5,6,7,8,9]
         var outcome=numArray.filter(function(element){
-            return (element>3)&&(element<9)
+            return (element>3)&&(element<8)
         })
         console.log(outcome)
 
         // 物件屬性的篩選 (陣列是可以塞屬性的!!!)
         var objectArray=[
-            {animal:"dog",color:"white"},
-            {animal:"dog",color:"black"},
-            {animal:"cat",color:"white"},
-            {animal:"cat",color:"black"},
-            {animal:"bird",color:"white"},
-            {animal:"bird",color:"black"},
+            {animal:"dog",color:"white",name:"AA"},
+            {animal:"dog",color:"black",name:"BB"},
+            {animal:"cat",color:"white",name:"CC"},
+            {animal:"cat",color:"black",name:"XX"},
+            {animal:"bird",color:"white",name:"YY"},
+            {animal:"bird",color:"black",name:"ZZ"},
         ]
+        var choice=objectArray.filter(function(element){
+            return (element.animal=="cat")||(element.color=="black")
+        })
+        console.log(choice)
+
+        // find方法：找到一筆資料 vs filter方法：過濾
+        var findArray=[5,12,12,8,130,35]
+        var findFound=findArray.find(function(number){
+            return number>=12
+        })
+        console.log("findFound：",findFound)  //只會 print出一個 12 (不管後續的 12,130,35)
+        
+        var filterFound=findArray.filter(function(number){
+            return number>=12
+        })
+        console.log("filterFound：",filterFound)    //會抓出 [12, 12, 130, 35]，並組成陣列
     </script>
 </body>
 </html>
