@@ -10,11 +10,13 @@
     <h2>
         1. forEach( )：讀過陣列裡的每一個元素<br>
         2. filter(  )：過濾陣列裡的每個元素符合條件就回傳，並組成一個陣列<br>
-        3. find( )：找到「第一筆」符合條件的資料，只抓一筆資料！！
+        3. find( )：找到「第一筆」符合條件的資料，只抓一筆資料！！<br>
+        4. reduce( )：將陣列的每個值依序做相加
     </h2>
     <h3>
         <span style="color: red;">
-            hint：map( )用return會回傳值給新變數作為新陣列 / forEach( )用return不會回傳值
+            hint：map( )用return會回傳值給新變數作為新陣列 / forEach( )用return不會回傳值<br>
+            hint2 ：reduce( )用法 = > array.reduce ( function ( 總和空間 , 陣列元素 ) { .... } , 起始值 )
         </span>
     </h3>
     <script>
@@ -26,7 +28,7 @@
             //console.log(element)
             return element  // 所以無法用 return+ var 變數去取得值
         })
-        console.log(theSlice)
+        console.log("因無法return值所以顯示：",theSlice)
 
         // Test 2. 在函式裡完成 console.log()
         arr.forEach(function(theArray){
@@ -39,7 +41,15 @@
         forEachNumTotalArray.forEach(function(number){
             total+=number   //需要有個變數去儲存每個元素的總和
         })
-        console.log(total)
+        console.log("使用forEach()計算：",total)
+
+        // 繼上題，使用reduce()改寫
+        var initialValue=0
+        var reduceTotal=forEachNumTotalArray.reduce(function(sum,element){
+            sum+=element
+            return sum
+        },initialValue)
+        console.log("使用reduce()計算：",reduceTotal)
 
         //  以上範例使用 for 迴圈來寫，延伸變化題加上switch設定條件
         var forNumTotalArray=[1,2,3,4,5,6]
@@ -54,7 +64,7 @@
             }
               
         }
-        console.log(sum)
+        console.log("使用for迴圈計算：",sum)
 
         // filter會回傳值，可以用變數去接 return
         // number的篩選

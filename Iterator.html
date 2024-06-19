@@ -6,9 +6,61 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Iterator 疊代器</h1>
+    <button></button>
+    <h1>for of 與 for in 與Iterator 疊代器</h1>
+    <h2>
+        <span style="color: red;">
+            1. for of 疊代可以「可疊代的物件」iterable objects<br>
+            2. for in 疊代「屬性」  使用方法：for ( var keyVarable in Object )<br>
+            3. 疊代器的寫法： 字串的疊代 = > str [ Symbol.iterator ] ( ) / 陣列的疊代 = > arr [ Symbol.iterator ] ( )
+        </span>
+    </h2>
     <script>
+        // 實作 1. 字串的疊代 將 hello 一個一個取出來
+        var str="hello"
+        var iterator=str[Symbol . iterator]()
+        console.log(iterator.next().value)   //有加 value 呈現：h
+        console.log(iterator.next().value)
+        console.log(iterator.next().value)
+        console.log(iterator.next().value)
+        console.log(iterator.next())        //未加 value 呈現：{value: 'o', done: false}
 
+        // 實作 1-2. 運用for of 來簡化程式碼
+        var str2="Johny"
+        var str2Iterator=str2[Symbol.iterator]()
+        for(let element of str2Iterator){
+            console.log(element)
+        }
+
+        //  實作 2. 字串的疊代
+        var arr=[1,2,3,4,5,6,7]
+        var ArrIterator=arr[Symbol.iterator]()
+        //  2-1.運用for 迴圈    = > 要用 .next() 才需要宣告疊代器
+        for(i=0;i<arr.length;i++){
+            console.log(ArrIterator.next().value)
+        }
+        //  2-2.運用for of  = > 不需要疊代器變數!!!
+        for(var element of arr){
+            console.log(element)
+        }
+
+
+        // 實作 3. for in 疊代屬性
+        var doggy={
+            a:1,
+            b:2,
+            c:3,        // 記住! "a,b,c"都為 key(鍵) / "1,2,3"都為 value(值)
+        }
+        function show_Object(obj,objName){
+            var result=""
+            
+            for(var prop in obj){    // for (key in 物件)
+                result+= objName+"."+prop+"="+obj[prop]+"\n" //要取出 value = object[key]
+            }
+            return result        
+        }
+        console.log(show_Object(doggy,"doggy"))
+        
     </script>
 </body>
 </html>
