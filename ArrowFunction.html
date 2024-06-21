@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>箭頭函式與一般函式的差異</h1>
+    <h2>觀念 1. 甚麼情況下會有：return的概念在裡面<br>
+        <span style="color: red;">
+            var function1 = x => x+1  (預設會 return)<br>
+            var function2 = x => {x+1} (預設 Not return，需自行加入 return 去除錯： { return x+1 } )
+        </span>
+    </h2>
+    <h2>觀念 2. this綁定的對象，不再只是function<br>
+        <span style="color: red;">
+            物件本身可以用call，來找到this
+        </span>
+
+    </h2>
+    
+    <script>
+        // cnodition 1.
+        var ReturnFunction = x=>x+1     // 箭頭函示會return x+1
+        console.log(ReturnFunction(1))  // 用了箭頭函示就不須要再宣告 function 關鍵字
+        
+        // 此為ES5 的寫法，樓上es6為這個的簡化
+        function testFunc(x){
+            return x+1
+        }
+        console.log(testFunc(1))
+
+        // condition 2.
+        var NotReturnFunction = x=>{x+1}    // 有受{}保護，所以不會 return
+        console.log(NotReturnFunction(1))   // 結果會是 undefined
+        
+        // 此為ES5，樓上ES6的簡化
+        function testFunc2(x){
+            x+1         // 沒有 return，所以函式跑完沒有回傳值
+        }
+        console.log(testFunc2(1))       // 結果會是 undefined
+        
+
+
+        // call的概念
+        var obj={
+            person:"Bill"
+        }
+        function greet(){
+            let reply=`Hi,${this.person}`   //樣板字面植``：可以嵌入變數，也就是 ${}
+            console.log(reply)  //這邊的this就是obj變數
+        }
+        greet.call(obj)
+        
+        // 與樓上相同
+        var obj2={
+            person:"Bill",
+            greet:function(){
+                console.log("Hi,",this.person)
+            }
+        }
+        obj2.greet()
+        
+    </script>
+</body>
+</html>

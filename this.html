@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    THIS 真的好難...
+    <h1>關鍵核心概念：一但脫離了物件導向，this 就沒有什麼太大的意義<br>
+        所以要用"物件"的想法去看this
+    </h1>
+    <h2>
+        <span style="color: red;">
+            *this 的值跟作用域跟程式碼的位置在哪裡完全無關，只跟「你如何呼叫」有關<br>
+        </span>
+        <span style="color: red;">
+            *兩種完全不同的運行模式，一個是靜態（作用域）、一個是動態（this）<br>
+        </span>
+        <span style="color: red;">
+            *要看作用域，看這個函式在程式碼的「哪裡」；要看 this 就看這個函式「怎麽」被呼叫<br>
+            *把function call都用"call"的形式去看，而call的第一個參數就是this<br>
+            *箭頭函式：本身沒有this，所以「在宣告它的地方的 this 是什麼，它的 this 就是什麼」
+        </span>
+    </h2>
+    <script>
+        // 物件導向概念
+        function Person(name,age){
+            this.name=name
+            this.age=age
+            this.print=function(){
+                console.log(this.name+",age："+this.age)
+            }
+        }
+        var nick=new Person("nick",18)  // 這邊一定要加入"new"關鍵字，建立物件，設定屬性及方法，類別必須實體化New後才能使用
+        nick.print()
+        var peter=new Person("peter",22)    //peter,nick 對於這個物件來說屬於兩個不同instance(實例)
+        
+       
+        // 作用域複習!!
+        var a=10    // 對於test()來說自己作用域沒有a值，所以找全域變數 a=10
+        function test(){
+            console.log(a)  //大重點如果呼叫test他只會找自己作用域有沒有'a'的值，如果沒有就往上找(Global variable)
+        }
+        const obj2={
+            a:'obj',
+            hello:function(){
+                test()  //使用了 就會跳到test()這個function去找 a 值
+            },
+            hello2:function(){
+                var a=200   //因為加上var，所以為hello2() 的區域變數!!!!因此不影響test()的 a值
+                a=1000  // But!若沒加上 var，運行到這行這個 a 就為全域變數會影響樓上的 a，所以就會print 出 a=1000
+                test()
+            }
+        }
+        // 得出結論：test 在自己的作用域裡面找不到 a 於是往上一層找，而上一層就是 global scope，這跟你在哪裡呼叫 test 一點關係都沒有
+        test()      // a=10
+        obj2.hello()    // a=10
+        obj2.hello2()   //  a=10
+
+
+        // this 基本概念，用call的概念去看並且 this 值==第一個值!!!
+        // this 的存在就是物件，所以this要去找物件，找不到物件就是沒有意義
+        function hi(a,b){
+            console.log(this,a,b)
+        }
+        hi(1,2)     // undefined,1,2
+        hi.call(undefined,1,2)      // undefined,1,2
+        hi.call("yo",1,2)       // "yo",1,2
+        
+        const obj={
+            value:1,
+            hello:function(){
+                console.log(this.value)     //this == obj物件
+            }
+        }
+        // 用了call 就是要去找物件
+        obj.hello() // value=1
+        // 等同於 obj.hello.call(obj) ，obj裡 value=1
+        const hey=obj.hello // undefined
+        // 等同於 hey.call()，裡面沒東西預設undefined
+        
+
+        //進階延伸題
+        const practice={
+            value:1,
+            hello:function(){
+                console.log(this.value) //看到this 就是物件
+            },
+            inner:{
+                value:2,
+                hello:function(){
+                    console.log(this.value)
+                }
+            }
+        }
+
+        const obj3=practice.inner
+        const hello=practice.inner.hello
+        practice.inner.hello()  // print 2
+        // 看成 practice.inner.hello.call(practice.inner)，而value=2
+        obj3.hello()    //print 2
+        // 看成 obj3.hello.call(obj3)，而obj3=practice.inner，value=2
+        hello()     // print undefined
+        // 看成 hello.call()，hello為屬性所以沒有物件，全域
+
+
+        // 箭頭函式的this
+        const arrowObj={
+            x:1,
+            hello:function(){
+                console.log(this)
+                const test=()=>{
+                    console.log(this.x)
+                }
+                test()
+            }
+        }
+
+        arrowObj.hello()       // print "arrowObj這個物件" & "1"
+        // 看成 arrowObj.hello.call(arrowObj)，所以this == arrowObj 也套用在 test箭頭函式，因此this.x== arrowObj.x
+        const hel=arrowObj.hello
+        hel()       // print undefined
+        // 看成 hel.call() ，而hel是屬性，因此為全域
+
+    </script>
+</body>
+</html>
