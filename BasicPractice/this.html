@@ -77,9 +77,9 @@
         // 用了call 就是要去找物件
         obj.hello() // value=1
         // 等同於 obj.hello.call(obj) ，obj裡 value=1
-        const hey=obj.hello // undefined
+        const hey=obj.hello 
         // 等同於 hey.call()，裡面沒東西預設undefined
-        
+        hey()   // undefined
 
         //進階延伸題
         const practice={
@@ -120,7 +120,7 @@
         arrowObj.hello()       // print "arrowObj這個物件" & "1"
         // 看成 arrowObj.hello.call(arrowObj)，所以this == arrowObj 也套用在 test箭頭函式，因此this.x== arrowObj.x
         const hel=arrowObj.hello
-        hel()       // print undefined
+        hel()       // print window (嚴格模式undefined)
         // 看成 hel.call() ，而hel是屬性，因此為全域
 
     </script>

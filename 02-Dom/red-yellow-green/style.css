@@ -1,0 +1,23 @@
+/* 大重點若是html內建的標籤不須加 '.' 但colorSquare為我們自創的class，須加上 '.' */
+.colorSquare{
+    height: 150px;
+    width: 150px;
+}
+
+/* '.' 為 <div> 標籤下的 <class>，繼續往下細分 <id> 標籤要用 '#' */
+#red{
+    background-color: red;
+}
+
+#yellow{
+    background-color: yellow;
+}
+
+#green{
+    background-color: green;
+}
+
+#white{
+    background-color: aliceblue;
+}
+
