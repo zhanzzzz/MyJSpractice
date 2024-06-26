@@ -43,7 +43,7 @@ const timer=function(){
         displaySeconds.innerHTML=`0${seconds}`
     }else{
         // 進到 2位數時，"0" 需要消失
-        displaySeconds.innerText=seconds
+        displaySeconds.innerHTML=seconds
     }
     // 當毫秒到100時，秒數要進位
     // 秒數顯示於畫面，顯示的條件也需要如同毫秒加進去
