@@ -26,6 +26,7 @@ function getDogImage(){
         .then(response=>response.json())    //第一個 .then 先取得response
         .then(json=>{       // 第二個 .then 取得json「物件」，然後信息(message)為json 物件裡的其中一個屬性
             console.log(json)
-            dogImgDiv.innerHTML=`<img src='${json.message}'/>`  // 樣板字面值可以用來帶入<html>標籤!!
+            dogImgDiv.innerHTML=`<img src=${json.message}/>`  // 樣板字面值可以用來帶入<html>標籤!!
         })
 }
+

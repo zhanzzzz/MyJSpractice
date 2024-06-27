@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Function 觀念大補貼+情境題</h1>
+    <h2>意義、功用：將一段 code包裝起來取個名字以便重複使用</h2>
+    <div>
+        <p>情況 1. 不代參數製作function</p>
+        <p style="color: red;">*缺點若想製作含有變數的function： hello james / hello john 就會變成需要兩個功能一樣但結果不同function*</p>
+        <p>情況 2. 解決以上方法，帶入參數！</p>
+    </div>
+    <script>
+        function greeting(){
+            console.log("Hello")
+        }
+
+        greeting()
+        greeting()  // 重複同樣動作，製作function重複執行動作
+        
+        // 帶上參數，function變得更靈活
+        function introduce(name){
+            console.log(`Hello,I\'m ${name}`)
+        }
+
+        introduce("ZZ")
+        introduce("LBJ")
+        introduce("goat")
+    </script>
+</body>
+</html>

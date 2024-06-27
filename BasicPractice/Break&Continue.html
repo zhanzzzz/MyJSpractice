@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Continue&Break 觀念大補帖+情境題</h1>
+    <h2>break：條件成立，直接跳出迴圈</h2>
+    <h2>continue：條件成立，跳出該次迭代，迴圈繼續</h2>
+    <div>
+        <p>情境題1. 以下的字串要找't' 這個單字</p>
+        <p>加上條件 1-2. 只要找到第一個' t '我們就停下來</p>
+        <p style="color: red;">*條件成立需要用上"break"去中止迴圈*</p>
+        <p>情境 2-1. 請列出一周的日期</p>
+        <p>加上條件 2-2. 請列出需要上班的日期(周休二日)</p>
+        <p style="color: red;">*同個迴圈底下兩種案例，所以需要 if 判斷特例並做他的行動+continue來讓迴圈能繼續跑*</p>
+    </div>
+    <script>
+        // 情境題 1. 以下的字串"qwertyuiop123t568t09874t"要找't' 這個單字
+        const str="qwertyuiop123t568t09874t"
+        for(var i=0;i<str.length;i++){
+        if(str[i]=='t'){
+            console.log(`找到 t 了，第${i}個是t`)
+            }
+        }
+
+        console.log("-----------------------")      // 區隔
+
+        // 加上條件 1-2. 只要找到 t 我們就停下來
+        for(var i=0;i<str.length;i++){
+        if(str[i]=="t"){
+            console.log(`找到 t 了，在第${i}個就找到了`)
+            break
+            }
+        }
+
+        console.log("-----------------------")      // 區隔
+
+        // 情境 2-1. 請列出一周的日期
+        for(var i=0;i<7;i++){
+            console.log(`星期${i+1}`)
+        }
+
+        console.log("-----------------------")      // 區隔
+
+        // 情境 2-2. 請列出需要上班的日期(周休二日)
+        for(var i=0;i<7;i++){
+            if((i+1)==7||(i+1)==6){
+                console.log(`星期${i+1}修假日，不上班`)
+                continue
+            }else{
+                console.log(`星期${i+1}要上班`)
+            }
+        }
+
+        console.log("-----------------------")      // 區隔
+    </script>
+</body>
+</html>

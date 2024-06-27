@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>function進階-1. return的概念：function的返回值，並跳出function</h1>
+    <h2>練習題--判斷 5、6 是否為質數</h2>
+    <p>寫法1. 原汁原味寫法 for + if</p>
+    <p style="color: red;">*大問題：每個個案都必須幫她做一串 code，且變數太多浪費空間*</p>
+    <p style="color: red;">*解決方法：使用function取代重複性*</p>
+    <p>寫法2. 運用function 去實現上面 for + if 的內容</p>
+    <p style="color: red;">*第一個function 用來判斷，第二個function 用來顯示結果，這個概念叫做邏輯拆開*</p>
+    <p>由於簡化了程式碼也藉由解決重複性：可以增加需求範圍</p>
+    <p>情境 2-2. 判斷 2~10 是不是質數 => 藉由迴圈將每個變數丟進function 去跑</p>
+    <script>
+        // 寫法1. 原汁原味寫法 for + if
+        let five=5,six=6
+        let fivIsPrime=true,sixIsPrime=true
+        for(let i=2;i<five;i++){
+            if(five%i==0){
+                console.log(`數字${five}不是質數`)
+                fivIsPrime=false
+                break
+            }
+        } 
+        if(fivIsPrime){
+            console.log(`數字${five}是質數`)
+        }
+
+        for(let i=2;i<six;i++){
+            if(six%i==0){
+                console.log(`數字${six}不是質數`)
+                sixIsPrime=false
+                break
+            }
+        } 
+        if(sixIsPrime){
+            console.log(`數字${six}是質數`)
+        }
+
+        
+        // 寫法2. 運用 function
+        // 第一個function 用來判斷，第二個function 用來顯示結果，這個概念叫做邏輯拆開
+        function NumIsPrime(number){
+            for(var i=2;i<number;i++){
+                if(number%i==0){
+                    return false    // 執行到這段，若條件成立 return false就終止並跳出function
+                }
+            }
+            return true     // 若迴圈執行完條件未成立，就會執行到這個 retrun 就跳出function
+        }
+
+        function showIsPrime(num,boolea){
+            var str
+            if(boolea==true){
+                str=console.log(`${num}是質數`)
+            }else{
+                str=console.log(`${num}不是質數`)
+            }
+            return str
+        }
+
+        // 製作出上面兩個function合併功能後製作出每個變數都能使用的function
+        // 判斷 2~10 是不是質數 => 藉由迴圈將每個變數丟進function 去跑
+        for(let i=2;i<=10;i++){
+            showIsPrime(i,NumIsPrime(i))
+        }
+    </script>
+</body>
+</html>
