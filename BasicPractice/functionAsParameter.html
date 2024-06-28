@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>函式本身也可以當成參數做傳遞</h1>
+    <h2 style="color: red;">
+        功用 1.讓邏輯拆開 => 函示之間不需要知道彼此在做甚麼事情
+    </h2>
+    <p>EX：一個負責做計算、一個負責做顯示 / 一個負責做判斷、一個負責做顯示</p>
+    <h2 style="color: red;">
+        功用 2.若兩個 function 功能類似做的事情類似，可藉由變數傳遞的方式交給同一個函示做顯示
+    </h2>
+    <p>EX：若有2個函示，一個做a+b / 一個做a*b ，那他們都可以 return 結果給 showResult()這個function 去做顯示</p>
+    <script>
+        // 第一個函示做兩數相加
+        function sub(num1,num2){
+            let total=num1+num2
+            return total
+        }
+
+        // 第二個函示做兩數相乘
+        function mult(num1,num2){
+            let total=num1*num2
+            return total
+        }
+
+        // sub()、mult()可當成變數傳送給同一個顯示結果的函示
+        function showResult(func,num1,num2){    // 因為以上兩個function 都需要兩個變數
+            console.log(`Result： ${func(num1,num2)}`) // 若顯示的內容為變數，需使用樣板字面值 `${ }`
+        }
+
+        showResult(sub,1,2)
+        showResult(mult,1,2)
+    </script>
+</body>
+</html>

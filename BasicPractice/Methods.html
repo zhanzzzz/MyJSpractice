@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Methods 方法</h1>
+    <h2>methods其實就是一個function</h2>
+    <h2 style="color: red;">在物件裡面宣告function，就會稱methods</h2>
+    <p style="color: red;">*當methods的宣告是一般func宣告時，才可以使用"this"！！！*</p>
+    <script>
+        const ZZ={
+            name:"ZZ",
+            age:22,
+            phone:"0913332295555",
+            email:"ZZ@qwer.com",
+            greetArrow:()=>console.log(`Hello,Im ${ZZ.name}`),
+            greet:function(){
+                console.log(`Hello Im ${this.name}，一般函式宣告才可以使用"this"`)
+            }
+        }
+        ZZ.greetArrow()
+        ZZ.greet()
+    </script>
+</body>
+</html>

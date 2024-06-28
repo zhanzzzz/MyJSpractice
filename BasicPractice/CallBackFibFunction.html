@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>費波納奇數列：運用的概念 => 函示回傳、遞迴，也就是在函式宣告的過程中再次使用該函示</h1>
+    <h2><br>下一位數要等於前兩位數的總和</h2>
+    <h2>做出來的效果 => 0 , 1 , 1 , 2 , 3 , 5 , 8 , 13 , 21</h2>
+    <p>
+        if(num==1){<br>
+            return 1
+        <br>}
+        <br>if(num==2){
+            <br> return 1
+        <br>}
+        <br>return fib(num-1)+fib(num-2)
+    </p>
+    <p style="color: red;">*不用 if else，運用 early return 的概念在裡面： coding 理念 => 能精簡就精簡不要太多層數*</p>
+    <p style="color: red;">*因為只要條件達成就直接 return 值，而函示只要遇到 return 就會跳出函示*</p>
+    <script>
+        // 0,1,1,2,3,5,8,13,21
+        // function fub()=> fib(1)=1 / fib(2)=1 / fib(3)=2
+
+        function fib(num){
+            // 狀況 1. fib(1)=1
+            if(num==1){
+                return 1
+            }
+            // 狀況 2. fib(2)=1
+            if(num==2){
+                return 1
+            }
+            // 狀況 3. fib(n)=fib(n-1)+fib(n-2) => 前兩項的合
+            let total=fib(num-1)+fib(num-2) // 再函示的過程中再次使用該函示 => 遞迴的概念
+            return total
+        }
+        for(var i=1;i<9;i++){
+            console.log(fib(i))
+        }
+    </script>
+</body>
+</html>

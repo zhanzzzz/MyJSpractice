@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>箭頭函示</h1>
+    <h2>func=(<span style="color: red;">函式需要的變數</span>)=><span style="color: red;">函示要 return 的值</span></h2>
+    <p>使用時機：若重複性高的話可以用一般 function 宣告</p>
+    <p>若是只將function當成變數傳遞的話可以考慮用Arrow Function</p>
+    <p>EX：function sub(variable1,variable2,<span style="color: red;"> ( a , b ) = > a + b</span>)</p>
+    <script>
+        function greet(){
+            console.log("hello")
+        }
+        // 兩個是依樣的概念
+        greetArrow=()=>{
+            console.log("hello")
+        }
+
+        function sum(a,b){
+            return a+b
+        }
+        // 兩個是依樣的
+        sumArrow=(a,b)=> a+b
+
+        console.log("一般函示宣告："+sum(1,2))
+        console.log("箭頭函示宣告："+sumArrow(1,2))
+        console.log('得結論它們式依樣的東西')
+    </script>
+</body>
+</html>
