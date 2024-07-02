@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>一些 array 的迭代、方法</h1>
+    <div>
+        <h2>1. Array 的迭代方法</h2>
+        <h3>。 For 迴圈</h3>
+        <h3>。 for...of 迴圈</h3>
+        <p style="color: red;">*For 迴圈可依照 i 的累進來控制迭代，for...of 強制每個元素都會被迭代*</p>
+        <p style="color: red;">*以上兩者共同的好處：可利用條件進行 break / continue*</p>
+        <h3>。 foreach ( ) => 為一個 function，不是迴圈!!! 不可使用 break</h3>
+    </div>
+    <h2>2. Map()： 統一讓陣列進行一樣的改變組成新的陣列，所以要有變數去接新陣列！！</h2>
+    <h2>3. fliter()：過濾找出符合條件的元素組成新陣列，所以要有變數去接新陣列！！</h2>
+    <script>
+        const arr=[1,2,3,4,5,6,7]
+        // 1. for
+        for(let i=0;i<arr.length;i++){
+            console.log(arr[i]) // 1,2,3,4,5,6,7
+        }
+        console.log("-----")
+        // for 特性：可控制迭代區間，跳著數
+        for(let i=0;i<arr.length;i+=3){
+            console.log(arr[i]) // 1,4,7
+        }
+        console.log("-----")
+        // 2. for...of => 不可控制迭代區間
+        for(const n of arr){
+            console.log(n)  // 1,2,3,4,5,6,7
+        }
+        console.log("-----")
+        // for、for...of 特性：可加上條件來進行 break / continue 篩選
+        // 情境題：不數基數，只數偶數 => 要用 if+continue
+        for(let i=0;i<arr.length;i++){
+            if(arr[i]%2==0){
+                console.log(arr[i])
+            }
+            if(arr[i]%2!==0){
+                continue
+            }
+        }   // 2,4,6
+        console.log("-----")
+        // 情境題：遇到偶數就中止迴圈並印出跑到哪個數字 => if + break
+        for(const k of arr){
+            console.log(k)
+            if(k%2==0){
+                console.log(`因為遇到偶數：${k}，所以中止迴圈`)
+                break
+            }
+        }   // 1,2
+        console.log("-----")
+        // 3. foreach()=>是一個function，不是迴圈
+        arr.forEach(n=>console.log(n))  // 1,2,3,4,5,6,7
+
+
+        // Map()=>陣列所有值一起做改變
+        const funcArr=[1,3,7,100,234]
+        
+        // 1. 將所有數值乘以2
+        const doubled=funcArr.map(element=>{return element*2})  // 加了大括弧就要加上 return！！
+        console.log("乘以2後的新陣列：",doubled)
+        
+        // 2. 將所有數值轉乘字串
+        const strArr=funcArr.map(element=>element.toString())
+        console.log("將number轉成string後的新陣列：",strArr)
+
+        // 3. (加上條件)將偶數值除以2
+        const doubleOdds=funcArr.map(element=>{
+            if(element%2==0){
+                return element/2
+            }
+            return element
+        })
+        console.log("將偶數值除以2的新陣列：",doubleOdds)
+
+
+        // fliter()=>過濾找出符合條件的元素組成新陣列
+        // 1. 找出基數元素
+        const odds=funcArr.filter(element=>{
+            if(element%2!==0){
+                return element
+            }
+        })
+        // 可簡寫成：const odds=funcArr.filter(element=>element%2!==0)
+        console.log("為基數元素有：",odds)
+
+        // 2. 找出不小於100的數字
+        const greaterThan100=funcArr.filter(element=>element>=100)
+        console.log("不小於100的元素有：",greaterThan100)
+    </script>
+</body>
+</html>
