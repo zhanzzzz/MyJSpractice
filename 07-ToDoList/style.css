@@ -1,0 +1,110 @@
+body{
+    background: linear-gradient(180deg,#C1E1FF 0%,#0085FF 100%);
+    min-height: 100vh;
+    font-family: "Roboto",sans-serif;
+}
+
+.container{
+    background-color: white;
+    width: 400px;
+    margin: 100px auto; /* margin調整物件在整個document相對位置：[上下]，[左右]*/
+    padding: 10px 100px; /* padding調整物件與物件間的距離：[上下]，[左右]*/
+    border-radius: 30px;
+}
+
+.todo-list-title{
+    position: relative;
+    left: -20px;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.inner-wrapper{
+    
+    margin: 0 auto;
+    max-width: 350px;
+    width: 100%;
+}
+
+.input-wrapper{
+    border-radius: 20px;
+    background: #EEEFF0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 424px;
+}
+
+.input-wrapper input{
+    background-color: transparent;
+    border: 0;
+    flex: 1;
+    outline: none;
+    padding: 10px 20px;
+}
+
+.input-wrapper button{
+    background-color: #359AFF;
+    border: 0px;
+    color: white;
+    font-family:"Roboto",sans-serif ;
+    font-size: 14px;
+    padding: 10px 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.list{
+    list-style: none;
+    padding: 0px;
+}
+
+.list li{
+    vertical-align: middle;
+    font-weight: 400;
+    padding: 5px;
+    position: relative;
+}
+
+.list li.checked{
+    text-decoration: line-through;
+}
+
+.list li::before{
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("asset/unchecked.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.list li.checked::before{
+    background-image: url("asset/checked.png");
+}
+
+.delete{
+    background-image: url("asset/delete.jpg");
+    border-radius: 25px;
+    padding: 5px;
+    background-position: center;
+    object-fit: cover;
+    position: absolute;
+    background-repeat: no-repeat;
+    right: 0;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    vertical-align: middle;
+}
+
+.delete:hover{
+    background-color: #F5F5F5;
+    cursor: pointer;
+}
