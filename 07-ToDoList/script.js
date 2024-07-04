@@ -3,50 +3,74 @@
 // 任務 3. 製作 delete 的功能刪除<li>項目
 // 任務 4. 因為有製作 <form> => 預設屬性，當提交任何東西，整個頁面都會重整(要關掉)
 // 任務 5. 若input裡沒輸入要跳出警示訊息
+// 任務 6. 讓網頁能繼住你的操作，並於下次啟動時保持上次的操作：localStage觀念
 
 
-let listState=[]
-const STATE_KEY="todo-list"
+// localStorage 所需的值【"Key","Value"】=> 都是字串，所以需要 JSON 來進行轉換
+let listState=[]    // 宣告來存放 localStorage 的 value
+const STATE_KEY="todo-list"  // 宣告資料庫的 key 值
 
-function  loadState(){
-    const listState=localStorage.getItem(STATE_KEY)
-    if(listState !== null){
-        return JSON.parse(listState)
+// step1. 先製作當進入頁面時，劉覽器能 loading 先前的操作
+function loadState(){
+
+    // 在DB當中，都是藉由 key值，去取得裡面的value，所以 localState 存放的是STATE_KEY 當中的 value
+    const localState=localStorage.getItem(STATE_KEY)    
+    
+    // 當key值不是空值，代表網頁有資料，所以要return 資料回來
+    if(localState !== null){
+        // json.parse => 將 string (因為localStage存放都為字串) 轉換成 value
+        // 並將 localStage 的 value return 傳回值
+        const arr=JSON.parse(localState)
+        return arr 
     }
+    // 若沒有key值，回傳空字串
     return []
 }
 
-function saveState(list){
-    localStorage.setItem(STATE_KEY,JSON.stringify(list))
+// step2. 製作一個function，將我們每個操作轉成字串並存放到 localStorage 裡面
+// 要接受每個操作的值來加以轉換，所以function裡面會有一個 value的參數
+function saveState(value){
+    // json.strinify => 強制將任何東西轉為 string
+    localStorage.setItem(STATE_KEY,JSON.stringify(value))
 }
 
-intList()
-
-function intList(){
-    // loda state
+// step3. 製作每當進入瀏覽器要跟 localStorage 「拿取」 value ，並把他｢呈現」在 html 上
+function initState(){
+    // 1. 拿取data => 用上面的 loadState()
     listState=loadState()
-
-    // remder list
+    // 2. 呈現data，加到html當中
+    // 先取得 <ul> 控制項
     const ul=document.getElementById("list")
+    // 運用迴圈從 listState 陣列當中拿取每個資料 => 呈現在<ul> 上
     for(const item of listState){
-        const li=document.createElement("li")
-        li.innerText=item.text
+        // 在html 創建一個 <li>子項目的 elements，且讓elements能吃到<ul>的class
+        const elements=document.createElement("li")
+        elements.classList.add("item")
+        // 元素的內容
+        elements.innerText=item.text
 
-        const deleteButton=document.createElement("span")
-        deleteButton.classList.add("delete")
-        deleteButton.onclick=deleteItem
+        // 要在每個<li> 裡面再增加可以刪除的按鍵，且吃到CSS
+        const deleteBtn=document.createElement("button")
+        deleteBtn.classList.add("delete")
 
-        li.appendChild(deleteButton)
-        li.classList.add("item")
+        // 加入btn 被點擊的事件 => 串接 deleteItem()
+        deleteBtn.onclick=deleteItem
 
+        // 要加在<li> 的後面 => 用appendChild()
+        elements.appendChild(deleteBtn)
+
+        // 如果<li>元素本身是以勾選狀態，要切換class為"checked"的樣式
         if(item.checked){
-            li.classList.add("checked")
+            elements.classList.add("checked")
         }
-
-        li.onclick=checkItem
-        ul.appendChild(li)
+        elements.onclick=checkItem
+        // 完成所有<li>後串接到<ul>裡面
+        ul.appendChild(elements)
     }
 }
+
+
+
 
 // 取得 add-button 的 id 交給 .js 去控制
 const addBtn=document.getElementById("add-button")
@@ -91,38 +115,50 @@ function addItem(){
 
     
     // 另外製作一個 deleteButton 來接住 deleteItem 事件，並串接btn 在每行<li>後面 
-    const deleteBtn=document.createElement("span")  // 因為串接在<li>裡面，所以用<span>標籤
+    const deleteBtn=document.createElement("button")  // 因為串接在<li>裡面，所以用<span>標籤
     deleteBtn.classList.add("delete")   //讓delteBtn 吃到css
     newItem.appendChild(deleteBtn)  // 讓<li>接住新元素<span>
     deleteBtn.onclick=deleteItem
 
+    // 先更新listState => 決定value的格式，用屬性包起來因為需要"做了甚麼事"&"打勾狀態"
     listState.push({
         text,
-        checked: false
+        checked:false      
     })
+
+    // 將每個操作都存到 saveState() 在更新到 localStorage
     saveState(listState)
 }
 
 
-function checkItem(){
+function checkItem(event){
+    // 子節點：<li>
     const item=this
+    // .parentNode 取得父節點 =><ul>
     const parent=item.parentNode
-    const idx=Array.from(parent.childNodes).indexOf(item)
-
-    listState[idx].checked= !listState[idx].checked
+    
+    // .children 取得子節點
+    const index=Array.from(parent.children).indexOf(item)
+    // 當點擊了新的狀態要賦值成原本的相反
+    listState[index].checked= !listState[index].checked
     item.classList.toggle("checked")
-
     saveState(listState)
+    event.stopPropagation()
 } 
 
 // 任務 3. 製作 delete 的功能刪除<li>項目
+// 由於deleteItem / checkItem 都在同個子元素<li>都會傳給父節點 => 會發生冒泡事件(重複執行會error)
+// 停止冒泡事件 => 用 event.stopPropagation() ：讓這個事件的操作只存留在這個function
 function deleteItem(e){
+    // 子節點：<li>
     const item=this.parentNode
+    // 父節點：<ul>
     const parent=item.parentNode
-    const idx=Array.from(parent.childNodes).indexOf(item)
-    listState=listState.filter((_,i)=>i !==idx)
+    
+    const index=Array.from(parent.children).indexOf(item)
+    listState=listState.filter((_,i)=>i!==index)
     parent.removeChild(item)
-
     saveState(listState)
     e.stopPropagation()
 }
+initState()
