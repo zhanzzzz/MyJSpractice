@@ -27,3 +27,4 @@ function clean(){
     priceoftip.textContent=""
     priceoftotal.textContent=""
 }
+
