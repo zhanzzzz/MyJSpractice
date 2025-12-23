@@ -7,12 +7,37 @@
 </head>
 <body>
     <h1>測試 AddEventListener - KeyDown</h1>
-    <p id="test">.........</p>
+    <p id="test" name="test">.........</p>
+
+    <input id="txtInput" type="text" placeholder="請點擊此輸入框後按鍵盤按鍵">    
 </body>
 <script>
-    const testArea =document.getElementById("test");
+    // const testArea =document.getElementById("test");
+    const testArea=document.querySelector("#test");
+    const txtInput=document.getElementById("txtInput");
     testArea.innerText="請按下鍵盤按鍵，我會列出KeyCode";
 
+    // 層級更高 會影響到txtInput的keydown結果
+    // 子元素的事件觸發後，父元素的同類型事件也會跟著觸發
     document.addEventListener("keydown",e=>testArea.innerText =`E.KEYCODE：${e.keyCode}  ****  E.CODE：${e.code}` );
+    txtInput.addEventListener("input",e=>{
+        const val=e.currentTarget.value;
+        if(val.startsWith(" ")|| val.startsWith("　")){
+            e.currentTarget.value=val.trim();
+            console.log("你沒輸入內容，起始不得為空白鍵");
+            
+            testArea.innerText="你沒輸入內容，起始不得為空白鍵";
+        }
+    });
+    txtInput.addEventListener("keydown",e=>{
+        if(e.keyCode==32||e.keyCode==229){
+            // e.preventDefault();
+            // 阻止事件冒泡
+            e.stopPropagation();
+            // console.log("你沒輸入內容，起始不得為空白鍵");
+            
+            // testArea.innerText="你沒輸入內容，起始不得為空白鍵";
+        }
+    });
 </script>
 </html>
