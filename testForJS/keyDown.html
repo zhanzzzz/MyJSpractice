@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>測試 AddEventListener - KeyDown</h1>
+    <p id="test">.........</p>
+</body>
+<script>
+    const testArea =document.getElementById("test");
+    testArea.innerText="請按下鍵盤按鍵，我會列出KeyCode";
+
+    document.addEventListener("keydown",e=>testArea.innerText =`E.KEYCODE：${e.keyCode}  ****  E.CODE：${e.code}` );
+</script>
+</html>
